@@ -6,6 +6,8 @@ public class ElevatorApp {
     public static void main(String[] args) {
         System.out.println("Hello to the elevator app!");
 
+        Thread processorThread = new Thread(new RequestProcessor(), "processorThread");
+        Thread listenerThread = new Thread(new RequestListener(), "listenerThread");
 
     }
 }
@@ -33,6 +35,18 @@ class Elevator {
     }
 
 
+
+}
+
+class RequestListener implements Runnable {
+
+    @Override
+    public void run() {
+
+    }
+}
+
+class RequestProcessor implements Runnable {
 
 }
 
