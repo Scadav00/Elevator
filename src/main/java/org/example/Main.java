@@ -4,3 +4,7 @@ public class Main {
         System.out.println("Hello to the elevator app!");
     }
 }
+
+enum Direction {
+    UP,DOWN
+}
