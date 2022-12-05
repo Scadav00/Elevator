@@ -7,4 +7,5 @@ public class Main {
 
 enum Direction {
     UP,DOWN
+
 }
