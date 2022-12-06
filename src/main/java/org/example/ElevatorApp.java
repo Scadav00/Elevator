@@ -12,6 +12,9 @@ public class ElevatorApp {
 
         Thread processorThread = new Thread(new RequestProcessor(), "processorThread");
         Thread listenerThread = new Thread(new RequestListener(), "listenerThread");
+
+
+        Elevator.getElevator_instance().setProcessorThread(processorThread);
         processorThread.start();
         listenerThread.start();
 
@@ -43,11 +46,11 @@ class Elevator {
         return elevator_instance;
     }
 
-    public void addFloor(int floor) {
+    public synchronized void addFloor(int floor) {
         ts.add(floor);
     }
 
-    public int moveToFloor() {
+    public synchronized int moveToFloor() {
         Integer floor = null;
 //        >
         Integer greaterFloor = (Integer) ts.ceiling(currentFloor);
@@ -78,7 +81,7 @@ class Elevator {
         } else {
             ts.remove(floor);
         }
-        return floor;
+        return (floor == null) ? -1 : floor;
 }
 
     public int getCurrentFloor() {
@@ -99,6 +102,9 @@ class Elevator {
         this.direction = direction;
     }
 
+    public void setProcessorThread(Thread processorThread) {
+        this.processorThread = processorThread;
+    }
 }
 
 class RequestListener implements Runnable {
@@ -145,6 +151,10 @@ class RequestProcessor implements Runnable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            System.out.println("User Pressed : " + inputFloorNumber);
+            Elevator elevator = Elevator.getElevator_instance();
+            elevator.addFloor(Integer.parseInt(inputFloorNumber));
+
         }
 
     }
