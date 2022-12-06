@@ -86,14 +86,14 @@ class Elevator {
         this.currentFloor = currentFloor;
     }
 
+}
 
-    class RequestListener implements Runnable {
+class RequestListener implements Runnable {
 
     @Override
     public void run() {
 
     }
-}
 
 class RequestProcessor implements Runnable {
 
