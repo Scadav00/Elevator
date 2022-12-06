@@ -51,6 +51,10 @@ class RequestListener implements Runnable {
 
 class RequestProcessor implements Runnable {
 
+    @Override
+    public void run() {
+
+    }
 }
 
 enum Direction {
