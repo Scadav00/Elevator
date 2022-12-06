@@ -1,5 +1,8 @@
 package org.example;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -95,6 +98,7 @@ class Elevator {
     public void setDirection(Direction direction) {
         this.direction = direction;
     }
+
 }
 
 class RequestListener implements Runnable {
@@ -119,7 +123,7 @@ class RequestListener implements Runnable {
 
             }catch (InterruptedException e){
                 if(elevator.getCurrentFloor() != floor) {
-                    elevator.get
+                    elevator.getElevator_instance().addFloor(floor);
                 }
 
             }
@@ -132,6 +136,16 @@ class RequestProcessor implements Runnable {
 
     @Override
     public void run() {
+        while (true) {
+            String inputFloorNumber = null;
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+                inputFloorNumber = bufferedReader.readLine();
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
 
     }
 }
