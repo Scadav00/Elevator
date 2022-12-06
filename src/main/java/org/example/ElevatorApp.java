@@ -8,6 +8,9 @@ public class ElevatorApp {
 
         Thread processorThread = new Thread(new RequestProcessor(), "processorThread");
         Thread listenerThread = new Thread(new RequestListener(), "listenerThread");
+        processorThread.start();
+        listenerThread.start();
+
 
     }
 }
