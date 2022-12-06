@@ -33,7 +33,7 @@ class Elevator {
     }
 
 
-    public static Elevator getInstance()
+    public static Elevator getElevator_instance()
     {
         if (elevator_instance == null)
             elevator_instance = new Elevator();
