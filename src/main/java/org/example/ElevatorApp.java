@@ -82,7 +82,7 @@ class Elevator {
         return currentFloor;
     }
 
-    public void setCurrentFloor(int currentFloor) {
+    public void setCurrentFloor(int currentFloor) throws InterruptedException {
         if (this.currentFloor < currentFloor)
             setDirection(Direction.UP);
         else {
@@ -101,6 +101,30 @@ class RequestListener implements Runnable {
 
     @Override
     public void run() {
+        while (true) {
+            Elevator elevator = Elevator.getElevator_instance();
+            int floor = elevator.moveToFloor();
+            int currentFloor = elevator.getCurrentFloor();
+            try {
+                if (floor >= 0){
+                   while (currentFloor < floor) {
+                       elevator.setCurrentFloor(++currentFloor);
+                   }
+                }else {
+                    while (currentFloor > floor) {
+                        elevator.setCurrentFloor(--currentFloor);
+                    }
+                }
+                System.out.println("You have arrived at the Floor: " + elevator.getCurrentFloor());
+
+            }catch (InterruptedException e){
+                if(elevator.getCurrentFloor() != floor) {
+                    elevator.get
+                }
+
+            }
+
+        }
 
     }
 }
