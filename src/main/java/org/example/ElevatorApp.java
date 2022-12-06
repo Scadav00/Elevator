@@ -83,9 +83,18 @@ class Elevator {
     }
 
     public void setCurrentFloor(int currentFloor) {
+        if (this.currentFloor < currentFloor)
+            setDirection(Direction.UP);
+        else {
+            setDirection(Direction.DOWN);
+        }
         this.currentFloor = currentFloor;
+        System.out.println("Floor number: " + currentFloor);
     }
 
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }
 
 class RequestListener implements Runnable {
